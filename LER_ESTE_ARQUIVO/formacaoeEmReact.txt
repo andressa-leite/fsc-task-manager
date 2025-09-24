@@ -18,6 +18,12 @@ https://alunos.fullstackclub.com.br/area/produto/item/4404444
 		tailwind.config.js
 		content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
-parei 10 minutos
+	npm install -D prettier-plugin-tailwindcss@0.6.5
+		No arquivo:
+		prettierrc
+		inserir linha:
+		"plugins": ["prettier-plugin-tailwindcss"]
+
+
 
 https://playcode.io/react
