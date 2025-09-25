@@ -1,6 +1,7 @@
+import { Sidebar } from "./components/SideBar";
 
 function App() {
-  return <div><h1 className="text-red-500">Task Manager</h1></div>
+  return <div><Sidebar /></div>
 }
 
 export default App;
