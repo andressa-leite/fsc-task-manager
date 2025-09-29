@@ -1,44 +1,28 @@
-import { useState } from "react";
-import Header from "./Header";
+import { Button } from './Button';
+import { MdAdd } from 'react-icons/md';
+import { VscTrash } from 'react-icons/vsc';
 
 function Tasks() {
-    const [inputValue, setInputValue] = useState("teste");
-    const [messages, setMessages] = useState([
-        "Hello World",
-        "FSC is the best course in the world"
-    ])
-
-    function handleButtonClick(){
-        setMessages([...messages, inputValue])
-    }
-
-    return (
+  return (
+    <div className="w-full px-8 py-16">
+      <div className="flex w-full justify-between">
         <div>
-            <Header>
-                <h1>Add Tasks</h1>
-            </Header>
-            <input
-            className="input"
-            type="text"
-            placeholder="create your task..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            />
-
-            <button className="button" onClick={handleButtonClick}>
-                Add Task
-            </button>
-
-            <div>
-                <ul>
-                    {messages.map((message) => {
-                        return <li>{message}</li>;
-                    })}
-                </ul>
-            </div>
-
+          <span className="text-xs font-semibold text-[#00ADB5]">My Tasks</span>
+          <h2 className="text-xl font-semibold">My Tasks</h2>
         </div>
-    )
+        <div className="flex items-center gap-3">
+          <Button variant="ghost">
+            Limpar Tarefas
+            <VscTrash />
+          </Button>
+          <Button variant="primary">
+            Nova Tarefa
+            <MdAdd />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Tasks;
