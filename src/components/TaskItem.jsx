@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import { CiRedo } from 'react-icons/ci';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 import { MdOutlineDone } from 'react-icons/md';
+import { Button } from './Button';
+import { TbTrashXFilled } from 'react-icons/tb';
 
-const TaskItem = ({ task, handleTaskCheckboxClick }) => {
+const TaskItem = ({ task, handleTaskCheckboxClick, hadleDeleteClick }) => {
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-[#00ADB5] text-[#00ADB5]';
@@ -18,7 +20,7 @@ const TaskItem = ({ task, handleTaskCheckboxClick }) => {
 
   return (
     <div
-      className={`transition flex items-center justify-between gap-2 rounded-lg bg-opacity-10 px-4 py-3 ${getStatusClasses()}`}
+      className={`flex items-center justify-between gap-2 rounded-lg bg-opacity-10 px-4 py-3 transition ${getStatusClasses()}`}
     >
       <div className="flex items-center gap-2">
         <label
@@ -42,9 +44,14 @@ const TaskItem = ({ task, handleTaskCheckboxClick }) => {
         </label>
         {task.title}
       </div>
-      <a href="#" className="transition hover:opacity-75">
-        <LuSquareArrowOutUpRight />
-      </a>
+      <div className='flex items-center gap-2'>
+        <button className="transition hover:opacity-75" onClick={() => hadleDeleteClick(task.id)}>
+          <TbTrashXFilled />
+        </button>
+        <a href="#" className="transition hover:opacity-75">
+          <LuSquareArrowOutUpRight />
+        </a>
+      </div>
     </div>
   );
 };
@@ -55,6 +62,7 @@ TaskItem.propTypes = {
     status: PropTypes.string.isRequired,
   }).isRequired,
   handleTaskCheckboxClick: PropTypes.func.isRequired,
+  hadleDeleteClick: PropTypes.func.isRequired,
 };
 
 export default TaskItem;

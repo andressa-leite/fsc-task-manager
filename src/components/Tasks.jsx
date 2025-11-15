@@ -13,6 +13,10 @@ function Tasks() {
   const morningTasks = tasks.filter((task) => task.time === 'morning');
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time === 'evening');
+  const hadleDeleteClick = (taskID) => {
+    const newTasks = tasks.filter((task) => task.id !== taskID);
+    setTasks(newTasks);
+  };
   const handleTaskCheckboxClick = (taskId) => {
     const newTasks = tasks.map((task) => {
       if (task.id !== taskId) {
@@ -27,13 +31,13 @@ function Tasks() {
       if (task.status === 'done') {
         return { ...task, status: 'not_started' };
       }
-      return task
+      return task;
     });
     setTasks(newTasks);
   };
 
   return (
-    <div className="w-full px-8 y-6 py-16">
+    <div className="y-6 w-full px-8 py-16">
       <div className="flex w-full justify-between">
         <div>
           <span className="text-xs font-semibold text-[#00ADB5]">My Tasks</span>
@@ -60,19 +64,30 @@ function Tasks() {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
+              hadleDeleteClick={hadleDeleteClick}
             />
           ))}
         </div>
         <div className="my-6 space-y-3">
           <TasksSeparator title="Afternoon" icon={<LuCloudSun />} />
           {afternoonTasks.map((task) => (
-            <TaskItem key={task.id} task={task} handleTaskCheckboxClick={handleTaskCheckboxClick} />
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              hadleDeleteClick={hadleDeleteClick}
+            />
           ))}
         </div>
         <div className="my-6 space-y-3">
           <TasksSeparator title="Evening" icon={<GrMoon />} />
           {eveningTasks.map((task) => (
-            <TaskItem key={task.id} task={task} handleTaskCheckboxClick={handleTaskCheckboxClick}/>
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              hadleDeleteClick={hadleDeleteClick}
+            />
           ))}
         </div>
       </div>
