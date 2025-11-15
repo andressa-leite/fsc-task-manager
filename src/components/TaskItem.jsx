@@ -3,7 +3,7 @@ import { CiRedo } from 'react-icons/ci';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 import { MdOutlineDone } from 'react-icons/md';
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, handleTaskCheckboxClick }) => {
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-[#00ADB5] text-[#00ADB5]';
@@ -18,7 +18,7 @@ const TaskItem = ({ task }) => {
 
   return (
     <div
-      className={`flex items-center justify-between gap-2 rounded-lg bg-opacity-10 px-4 py-3 ${getStatusClasses()}`}
+      className={`transition flex items-center justify-between gap-2 rounded-lg bg-opacity-10 px-4 py-3 ${getStatusClasses()}`}
     >
       <div className="flex items-center gap-2">
         <label
@@ -30,6 +30,7 @@ const TaskItem = ({ task }) => {
             checked={task.status === 'done'}
             readOnly
             className="absolute h-full w-full cursor-pointer opacity-0"
+            onChange={() => handleTaskCheckboxClick(task.id)}
           />
           {/* ícone aparece se estiver marcada */}
           {task.status === 'done' && (
@@ -41,7 +42,7 @@ const TaskItem = ({ task }) => {
         </label>
         {task.title}
       </div>
-      <a href='#' className='hover:opacity-75 transition'>
+      <a href="#" className="transition hover:opacity-75">
         <LuSquareArrowOutUpRight />
       </a>
     </div>
@@ -49,7 +50,11 @@ const TaskItem = ({ task }) => {
 };
 
 TaskItem.propTypes = {
-  task: PropTypes.string.isRequired,
+  task: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+  }).isRequired,
+  handleTaskCheckboxClick: PropTypes.func.isRequired,
 };
 
 export default TaskItem;
