@@ -7,6 +7,7 @@ import { TasksSeparator } from './TasksSeparator';
 import { useState } from 'react';
 import TASKS from '../constants/Tasks';
 import TaskItem from './Taskitem';
+import { toast } from 'sonner';
 
 function Tasks() {
   const [tasks, setTasks] = useState(TASKS);
@@ -16,6 +17,7 @@ function Tasks() {
   const hadleDeleteClick = (taskID) => {
     const newTasks = tasks.filter((task) => task.id !== taskID);
     setTasks(newTasks);
+    toast.success("Task removed successfully")
   };
   const handleTaskCheckboxClick = (taskId) => {
     const newTasks = tasks.map((task) => {
@@ -23,12 +25,15 @@ function Tasks() {
         return task;
       }
       if (task.status === 'not_started') {
+        toast.success("task in progress")
         return { ...task, status: 'in_progress' };
       }
       if (task.status === 'in_progress') {
+        toast.success("task started successfully")
         return { ...task, status: 'done' };
       }
       if (task.status === 'done') {
+        toast.success("task about to be started")
         return { ...task, status: 'not_started' };
       }
       return task;
