@@ -1,6 +1,7 @@
-import { SidebarButton } from './SidebarButton';
-import { TiHome } from 'react-icons/ti';
 import { FaTasks } from 'react-icons/fa';
+import { TiHome } from 'react-icons/ti';
+
+import { SidebarButton } from './SidebarButton';
 
 export const Sidebar = () => {
   return (
