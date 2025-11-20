@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { CiRedo } from 'react-icons/ci';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 import { MdOutlineDone } from 'react-icons/md';
-import { Button } from './Button';
 import { TbTrashXFilled } from 'react-icons/tb';
 
 const TaskItem = ({ task, handleTaskCheckboxClick, hadleDeleteClick }) => {
@@ -44,8 +43,11 @@ const TaskItem = ({ task, handleTaskCheckboxClick, hadleDeleteClick }) => {
         </label>
         {task.title}
       </div>
-      <div className='flex items-center gap-2'>
-        <button className="transition hover:opacity-75" onClick={() => hadleDeleteClick(task.id)}>
+      <div className="flex items-center gap-2">
+        <button
+          className="transition hover:opacity-75"
+          onClick={() => hadleDeleteClick(task.id)}
+        >
           <TbTrashXFilled />
         </button>
         <a href="#" className="transition hover:opacity-75">
@@ -58,6 +60,7 @@ const TaskItem = ({ task, handleTaskCheckboxClick, hadleDeleteClick }) => {
 
 TaskItem.propTypes = {
   task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
   }).isRequired,
