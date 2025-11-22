@@ -6,12 +6,14 @@ import { VscTrash } from 'react-icons/vsc';
 import { toast } from 'sonner';
 
 import TASKS from '../constants/Tasks';
+import AddTasksDialog from './AddTasksDialog';
 import { Button } from './Button';
 import TaskItem from './Taskitem';
 import { TasksSeparator } from './TasksSeparator';
 
 function Tasks() {
   const [tasks, setTasks] = useState(TASKS);
+  const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
   const morningTasks = tasks.filter((task) => task.time === 'morning');
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time === 'evening');
@@ -55,10 +57,11 @@ function Tasks() {
             Limpar Tarefas
             <VscTrash />
           </Button>
-          <Button variant="primary">
+          <Button onClick={() => {console.log("clicou no botão");setAddTaskDialogIsOpen(true)}} variant="primary">
             Nova Tarefa
             <MdAdd />
           </Button>
+          <AddTasksDialog isOpen={addTaskDialogIsOpen}/>
         </div>
       </div>
 
