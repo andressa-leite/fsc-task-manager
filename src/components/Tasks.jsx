@@ -17,6 +17,7 @@ function Tasks() {
   const morningTasks = tasks.filter((task) => task.time === 'morning');
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time === 'evening');
+
   const hadleDeleteClick = (taskID) => {
     const newTasks = tasks.filter((task) => task.id !== taskID);
     setTasks(newTasks);
@@ -54,14 +55,23 @@ function Tasks() {
 
         <div className="flex items-center gap-3">
           <Button variant="ghost">
-            Limpar Tarefas
+            Clear Tasks
             <VscTrash />
           </Button>
-          <Button onClick={() => {console.log("clicou no botão");setAddTaskDialogIsOpen(true)}} variant="primary">
-            Nova Tarefa
+          <Button
+            onClick={() => {
+              console.log('clicou no botão');
+              setAddTaskDialogIsOpen(true);
+            }}
+            variant="primary"
+          >
+            New task
             <MdAdd />
           </Button>
-          <AddTasksDialog isOpen={addTaskDialogIsOpen}/>
+          <AddTasksDialog
+            isOpen={addTaskDialogIsOpen}
+            handleClose={() => setAddTaskDialogIsOpen(false)}
+          />
         </div>
       </div>
 
