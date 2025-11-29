@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 
-export const Button = ({ children, variant = 'primary', onClick }) => {
+export const Button = ({
+  children,
+  variant = 'primary',
+  onClick,
+  size = 'small',
+  className,
+}) => {
   const getVariantClasses = () => {
     if (variant === 'primary') {
       return 'bg-[#00ADB5] text-white';
@@ -8,13 +14,25 @@ export const Button = ({ children, variant = 'primary', onClick }) => {
     if (variant === 'ghost') {
       return 'bg-transparent text-[#818181]';
     }
+    if (variant === 'secondary') {
+      return 'bg-[#EEEEEE] text-[#35383E]'
+    }
+  }
+
+  const getSizeClasses = () => {
+    if (size === 'small') {
+      return ' py-1 text-xs';
+    }
+    if (size === 'large') {
+      return ' py-2 text-sm';
   };
+}
+
   return (
-    
     <button
       onClick={onClick}
-      className={`hover:opacity-50 transition flex items-center gap-2 rounded-md px-3 py-1 text-xs ${getVariantClasses()}`}
-    >    
+      className={`flex items-center gap-2 rounded-md px-3 justify-center py-1 text-xs transition hover:opacity-50 ${getVariantClasses()} ${getSizeClasses()} ${className}`}
+    >
       {children}
     </button>
   );
@@ -24,4 +42,6 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  size: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
