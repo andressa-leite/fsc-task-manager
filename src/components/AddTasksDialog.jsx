@@ -38,7 +38,6 @@ const AddTasksDialog = ({ isOpen, handleClose }) => {
                 <p className="mb-4 mt-1 text-sm text-[#9A9C9F]">
                   Enter the information below
                 </p>
-
                 <div className="flex w-[336px] flex-col space-y-4">
                   <Input
                     id="title"
@@ -46,7 +45,7 @@ const AddTasksDialog = ({ isOpen, handleClose }) => {
                     placeholder="Enter the task title"
                   />
                   <Input id="time" lable="Hour" placeholder="Hour" />
-                  <Input
+                   <Input
                     id="description"
                     lable="Description"
                     placeholder="Describe the task"
