@@ -1,16 +1,17 @@
 import InputLabel from "./InputLabel";
 
-const TimeSelect = () => {
+const TimeSelect = (props) => {
   return (
     <div className="flex flex-col gap-1 text-left">
       <InputLabel htmlFor="Time">Time</InputLabel>
       <select
         id="time"
         className="rounded-lg border border-solid border-[#ECECEC] px-4 py-3 outline-[#00ADB5] placeholder:text-sm"
+        {...props}
       >
-        <option value="Morning">Morning</option>
-        <option value="Afternoon">Afternoon</option>
-        <option value="Evening">Evening</option>
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+        <option value="evening">Evening</option>
       </select>
     </div>
   );

@@ -1,16 +1,31 @@
 import './AddTaskDialog.css';
 
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import { v4 } from 'uuid';
 
 import { Button } from './Button';
 import Input from './Input';
 import TimeSelect from './TimeSelect';
 
-const AddTasksDialog = ({ isOpen, handleClose }) => {
+const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
+  const [title, setTitle] = useState('');
+  const [time, setTime] = useState('morning');
+  const [description, setDescription] = useState('');
   const nodeRef = useRef(null);
+
+  const handleSaveClick = () => {
+    handleSubmit({
+      id: v4(),
+      title,
+      time,
+      description,
+      status: 'not_started',
+    });
+    handleClose();
+  };
 
   return (
     <CSSTransition
@@ -42,14 +57,21 @@ const AddTasksDialog = ({ isOpen, handleClose }) => {
                 <div className="flex w-[336px] flex-col space-y-4">
                   <Input
                     id="title"
-                    lable="Title"
+                    label="Title"
                     placeholder="Enter the task title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
-                  <TimeSelect />
+                  <TimeSelect
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                  />
                   <Input
                     id="description"
-                    lable="Description"
+                    label="Description"
                     placeholder="Describe the task"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                   <div className="flex gap-3">
                     <Button
@@ -60,7 +82,11 @@ const AddTasksDialog = ({ isOpen, handleClose }) => {
                     >
                       Cancel
                     </Button>
-                    <Button size="large" className="w-full">
+                    <Button
+                      size="large"
+                      className="w-full"
+                      onClick={() => handleSaveClick()}
+                    >
                       Save
                     </Button>
                   </div>
@@ -78,6 +104,7 @@ const AddTasksDialog = ({ isOpen, handleClose }) => {
 AddTasksDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default AddTasksDialog;

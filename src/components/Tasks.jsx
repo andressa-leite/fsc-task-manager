@@ -18,6 +18,11 @@ function Tasks() {
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time === 'evening');
 
+  const handleAddTaskSubmit = (task) => {
+    setTasks([...tasks, task]);
+    toast.success('Task added successfully');
+  }
+
   const hadleDeleteClick = (taskID) => {
     const newTasks = tasks.filter((task) => task.id !== taskID);
     setTasks(newTasks);
@@ -71,6 +76,7 @@ function Tasks() {
           <AddTasksDialog
             isOpen={addTaskDialogIsOpen}
             handleClose={() => setAddTaskDialogIsOpen(false)}
+            handleSubmit={handleAddTaskSubmit}
           />
         </div>
       </div>
