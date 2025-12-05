@@ -25,6 +25,9 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
   }, [isOpen]);
 
   const handleSaveClick = () => {
+    if (!title.trim() || !description.trim()) {
+      return alert('Please fill in all fields.');
+    }
     handleSubmit({
       id: v4(),
       title,
