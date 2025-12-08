@@ -21,7 +21,7 @@ function Tasks() {
   const handleAddTaskSubmit = (task) => {
     setTasks([...tasks, task]);
     toast.success('Task added successfully');
-  }
+  };
 
   const hadleDeleteClick = (taskID) => {
     const newTasks = tasks.filter((task) => task.id !== taskID);
@@ -65,7 +65,6 @@ function Tasks() {
           </Button>
           <Button
             onClick={() => {
-              console.log('clicou no botão');
               setAddTaskDialogIsOpen(true);
             }}
             variant="primary"

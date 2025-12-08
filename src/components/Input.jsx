@@ -2,15 +2,17 @@ import PropTypes from 'prop-types';
 
 import InputLabel from './InputLabel';
 
-const Input = ({ label, ...rest }) => {
+const Input = ({ label, error, ...rest }) => {
   return (
-    <div className='space-y-1 flex flex-col text-left'>
-      <InputLabel  htmlFor={rest.id}>{label}</InputLabel>
+    <div className="flex flex-col space-y-1 text-left">
+      <InputLabel htmlFor={rest.id}>{label}</InputLabel>
       <input
-        className="rounded-lg outline-[#00ADB5] border border-solid border-[#ECECEC] px-4 py-3 placeholder:text-sm"
+        className="rounded-lg border border-solid border-[#ECECEC] px-4 py-3 outline-[#00ADB5] placeholder:text-sm"
         {...rest}
       />
-      
+      {error && (
+        <p className="text-left text-xs text-red-500">{error.message}</p>
+      )}
     </div>
   );
 };
@@ -19,4 +21,7 @@ export default Input;
 
 Input.propTypes = {
   label: PropTypes.string.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }),
 };
