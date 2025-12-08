@@ -42,12 +42,9 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
       });
     }
 
-    // if (!title.trim() || !description.trim()) {
-    //   return alert('Please fill in all fields.');
-    // }
+    setErrors(newErrors);
 
     if (newErrors.length > 0) {
-      setErrors(newErrors);
       return;
     }
 
@@ -64,7 +61,7 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
   };
 
   const titleError = errors.find((error) => error.field === 'title');
-  const timeError = errors.find((error) => error.field === 'time');
+  //const timeError = errors.find((error) => error.field === 'time');
   const descriptionError = errors.find(
     (error) => error.field === 'description'
   );
