@@ -11,23 +11,25 @@ import Input from './Input';
 import TimeSelect from './TimeSelect';
 
 const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
-  const [title, setTitle] = useState('');
   const [time, setTime] = useState('morning');
-  const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
 
   const nodeRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
-      setTitle('');
       setTime('morning');
-      setDescription('');
     }
   }, [isOpen]);
 
   const handleSaveClick = () => {
     const newErrors = [];
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
+
+    console.log(title);
 
     if (!title.trim()) {
       newErrors.push({ field: 'title', message: 'Title is required' });
@@ -98,9 +100,8 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
                     id="title"
                     label="Title"
                     placeholder="Enter the task title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
                     error={titleError}
+                    ref={titleRef}
                   />
 
                   <TimeSelect
@@ -111,8 +112,7 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
                     id="description"
                     label="Description"
                     placeholder="Describe the task"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    ref={descriptionRef}
                     error={descriptionError}
                   />
 

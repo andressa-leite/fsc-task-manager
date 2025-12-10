@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
 import InputLabel from './InputLabel';
 
-const Input = ({ label, error, ...rest }) => {
+
+const Input = forwardRef(({ label, error, ...rest }, ref) => {
   return (
     <div className="flex flex-col space-y-1 text-left">
       <InputLabel htmlFor={rest.id}>{label}</InputLabel>
       <input
         className="rounded-lg border border-solid border-[#ECECEC] px-4 py-3 outline-[#00ADB5] placeholder:text-sm"
+        ref={ref}
         {...rest}
       />
       {error && (
@@ -15,7 +18,9 @@ const Input = ({ label, error, ...rest }) => {
       )}
     </div>
   );
-};
+});
+
+Input.displayName = 'Input';
 
 export default Input;
 
