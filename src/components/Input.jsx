@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 
+import InputErrorMessage from './InputErrorMessage';
 import InputLabel from './InputLabel';
-
 
 const Input = forwardRef(({ label, error, ...rest }, ref) => {
   return (
@@ -14,7 +14,7 @@ const Input = forwardRef(({ label, error, ...rest }, ref) => {
         {...rest}
       />
       {error && (
-        <p className="text-left text-xs text-red-500">{error.message}</p>
+        <InputErrorMessage>{error.message}</InputErrorMessage>
       )}
     </div>
   );
