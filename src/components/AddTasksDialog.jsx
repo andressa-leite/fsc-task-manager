@@ -89,10 +89,10 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
             {/* Modal */}
             <div className="fixed inset-0 flex items-center justify-center">
               <div className="z-10 rounded-xl bg-white p-5 text-center">
-                <h2 className="text-xl font-semibold text-[#35383E]">
+                <h2 className="text-xl font-semibold text-brand-dark-blue">
                   New Task
                 </h2>
-                <p className="mb-4 mt-1 text-sm text-[#9A9C9F]">
+                <p className="mb-4 mt-1 text-sm text-brand-text-grey">
                   Enter the information below
                 </p>
                 <div className="flex w-[336px] flex-col space-y-4">

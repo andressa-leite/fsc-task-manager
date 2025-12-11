@@ -54,7 +54,7 @@ function Tasks() {
     <div className="y-6 w-full px-8 py-16">
       <div className="flex w-full justify-between">
         <div>
-          <span className="text-xs font-semibold text-[#00ADB5]">My Tasks</span>
+          <span className="text-xs font-semibold text-brand-primary">My Tasks</span>
           <h2 className="text-xl font-semibold">My Tasks</h2>
         </div>
 

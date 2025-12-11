@@ -25,8 +25,8 @@ const AddTasksDialog = ({ isOpen, handleClose }) => {
         className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/30"
       >
         <div className="rounded-xl bg-white p-5 text-center">
-          <h2 className="text-xl font-semibold text-[#35383E]">New Task</h2>
-          <p className="mb-4 mt-1 text-sm text-[#9A9C9F]">
+          <h2 className="text-xl font-semibold text-brand-dark-blue">New Task</h2>
+          <p className="mb-4 mt-1 text-sm text-brand-text-grey">
             Enter the information below
           </p>
 
