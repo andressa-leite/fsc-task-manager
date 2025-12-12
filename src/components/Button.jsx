@@ -38,8 +38,8 @@ export const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['primary', 'ghost', 'secondary']),
   onClick: PropTypes.func.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(['small', 'large']),
   className: PropTypes.string.isRequired,
 };

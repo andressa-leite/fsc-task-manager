@@ -25,6 +25,6 @@ export const SidebarButton = ({ children, variant }) => {
 };
 
 SidebarButton.propTypes = {
-  variant: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['selected', 'unselected']).isRequired,
   children: PropTypes.node.isRequired,
 };
