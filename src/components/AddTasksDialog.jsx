@@ -120,7 +120,7 @@ const AddTasksDialog = ({ isOpen, handleClose, handleSubmit }) => {
                     <Button
                       size="large"
                       className="w-full"
-                      variant="secondary"
+                      variant="ghost"
                       onClick={handleClose}
                     >
                       Cancel

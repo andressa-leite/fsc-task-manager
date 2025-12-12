@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types';
+import { tv } from 'tailwind-variants';
 
 export const SidebarButton = ({ children, variant }) => {
-  const getVariantClasses = () => {
-    if (variant === 'unselected') {
-      return 'text-brand-dark-blue';
-    }
-    if (variant === 'selected') {
-      return ' bg-brand-primary bg-opacity-15 text-brand-primary';
-    }
-  };
-  return (
+
+   const sidebarButton = tv({
+    base: 'flex items-center rounded-lg gap-2 px-6 py-3',
+    variants: { 
+      //variant below = button color
+      variant: {
+        unselected: 'text-brand-dark-blue',
+        selected: ' bg-brand-primary bg-opacity-15 text-brand-primary',
+      },
+    },
+  });
+
+    return (
     <a
       href="/Home"
-      className={`flex items-center rounded-lg gap-2 px-6 py-3 ${getVariantClasses()}`}
+      className={sidebarButton({ variant })}
     >
       {children}
     </a>
