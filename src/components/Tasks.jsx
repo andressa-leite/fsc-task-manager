@@ -53,11 +53,25 @@ function Tasks() {
     toast.success('Task added successfully');
   };
 
-  const hadleDeleteClick = (taskID) => {
+  // const hadleDeleteClick = (taskID) => {
+  //   const newTasks = tasks.filter((task) => task.id !== taskID);
+  //   setTasks(newTasks);
+  //   toast.success('Task removed successfully');
+  // };
+
+    const hadleDeleteClick = async (taskID) => {
+    const response = await fetch(`http://localhost:3001/tasks/${taskID}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      toast.error('Failed to delete task');
+      return;
+    }
     const newTasks = tasks.filter((task) => task.id !== taskID);
     setTasks(newTasks);
     toast.success('Task removed successfully');
   };
+
   const handleTaskCheckboxClick = (taskId) => {
     const newTasks = tasks.map((task) => {
       if (task.id !== taskId) {
