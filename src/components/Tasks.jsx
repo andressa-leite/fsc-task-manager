@@ -15,16 +15,16 @@ function Tasks() {
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
 
   useEffect(() => {
-     const fetchTasks = async () => {
+    const fetchTasks = async () => {
       //pegar os dados da API
-      const response = await fetch("http://localhost:3001/tasks", {
-        method: "GET",
-    });
+      const response = await fetch('http://localhost:3001/tasks', {
+        method: 'GET',
+      });
       //converter para json
-    const tasks = await response.json();
+      const tasks = await response.json();
       //atualizar state
       setTasks(tasks);
-    }
+    };
     fetchTasks();
   }, []);
 
@@ -32,7 +32,23 @@ function Tasks() {
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time === 'evening');
 
-  const handleAddTaskSubmit = (task) => {
+  // const handleAddTaskSubmit = (task) => {
+  //   setTasks([...tasks, task]);
+  //   toast.success('Task added successfully');
+  // };
+
+  const handleAddTaskSubmit = async (task) => {
+    const response = await fetch('http://localhost:3001/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(task),
+    });
+    if (!response.ok) {
+      toast.error('Failed to add task');
+      return;
+    }
     setTasks([...tasks, task]);
     toast.success('Task added successfully');
   };
@@ -68,7 +84,9 @@ function Tasks() {
     <div className="y-6 w-full px-8 py-16">
       <div className="flex w-full justify-between">
         <div>
-          <span className="text-xs font-semibold text-brand-primary">My Tasks</span>
+          <span className="text-xs font-semibold text-brand-primary">
+            My Tasks
+          </span>
           <h2 className="text-xl font-semibold">My Tasks</h2>
         </div>
 
