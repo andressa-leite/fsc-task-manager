@@ -1,19 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GrMoon } from 'react-icons/gr';
 import { LuCloudSun, LuSun } from 'react-icons/lu';
 import { MdAdd } from 'react-icons/md';
 import { VscTrash } from 'react-icons/vsc';
 import { toast } from 'sonner';
 
-import TASKS from '../constants/Tasks';
 import AddTasksDialog from './AddTasksDialog';
 import { Button } from './Button';
 import TaskItem from './Taskitem';
 import { TasksSeparator } from './TasksSeparator';
 
 function Tasks() {
-  const [tasks, setTasks] = useState(TASKS);
+  const [tasks, setTasks] = useState([]);
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
+
+  useEffect(() => {
+     const fetchTasks = async () => {
+      //pegar os dados da API
+      const response = await fetch("http://localhost:3001/tasks", {
+        method: "GET",
+    });
+      //converter para json
+    const tasks = await response.json();
+      //atualizar state
+      setTasks(tasks);
+    }
+    fetchTasks();
+  }, []);
+
   const morningTasks = tasks.filter((task) => task.time === 'morning');
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon');
   const eveningTasks = tasks.filter((task) => task.time === 'evening');
