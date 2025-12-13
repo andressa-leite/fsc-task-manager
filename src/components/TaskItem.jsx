@@ -65,6 +65,7 @@ const TaskItem = ({ task, handleTaskCheckboxClick, onDeleteSuccess }) => {
         <button
           className="transition hover:opacity-75"
           onClick={() => hadleDeleteClick(task.id)}
+          disabled={deleteTaskIsLoading}
         >
           {deleteTaskIsLoading ? (
             <CiRedo className="animate-spin text-lg text-slate-800" />
