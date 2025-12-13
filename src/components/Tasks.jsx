@@ -59,14 +59,7 @@ function Tasks() {
   //   toast.success('Task removed successfully');
   // };
 
-    const hadleDeleteClick = async (taskID) => {
-    const response = await fetch(`http://localhost:3001/tasks/${taskID}`, {
-      method: 'DELETE',
-    });
-    if (!response.ok) {
-      toast.error('Failed to delete task');
-      return;
-    }
+    const onDeleteTaskSuccess = async (taskID) => {
     const newTasks = tasks.filter((task) => task.id !== taskID);
     setTasks(newTasks);
     toast.success('Task removed successfully');
@@ -134,7 +127,7 @@ function Tasks() {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              hadleDeleteClick={hadleDeleteClick}
+              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
@@ -145,7 +138,7 @@ function Tasks() {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              hadleDeleteClick={hadleDeleteClick}
+              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
@@ -156,7 +149,8 @@ function Tasks() {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              hadleDeleteClick={hadleDeleteClick}
+               onDeleteSuccess={onDeleteTaskSuccess}
+              
             />
           ))}
         </div>

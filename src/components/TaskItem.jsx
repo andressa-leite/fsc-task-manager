@@ -1,10 +1,28 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { CiRedo } from 'react-icons/ci';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 import { MdOutlineDone } from 'react-icons/md';
 import { TbTrashXFilled } from 'react-icons/tb';
+import { toast } from 'sonner';
 
-const TaskItem = ({ task, handleTaskCheckboxClick, hadleDeleteClick }) => {
+const TaskItem = ({ task, handleTaskCheckboxClick, onDeleteSuccess }) => {
+  const [deleteTaskIsLoading, setDeleteTaskIsLoading] = useState(false);
+
+  const hadleDeleteClick = async (taskID) => {
+    setDeleteTaskIsLoading(true);
+    const response = await fetch(`http://localhost:3001/tasks/${taskID}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      setDeleteTaskIsLoading(false);
+      toast.error('Failed to delete task');
+      return;
+    }
+    onDeleteSuccess(task.id);
+    setDeleteTaskIsLoading(false);
+  };
+
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-brand-primary text-brand-primary';
@@ -48,7 +66,11 @@ const TaskItem = ({ task, handleTaskCheckboxClick, hadleDeleteClick }) => {
           className="transition hover:opacity-75"
           onClick={() => hadleDeleteClick(task.id)}
         >
-          <TbTrashXFilled />
+          {deleteTaskIsLoading ? (
+            <CiRedo className="animate-spin text-lg text-slate-800" />
+          ) : (
+            <TbTrashXFilled />
+          )}
         </button>
         <a href="#" className="transition hover:opacity-75">
           <LuSquareArrowOutUpRight />
@@ -66,6 +88,8 @@ TaskItem.propTypes = {
   }).isRequired,
   handleTaskCheckboxClick: PropTypes.func.isRequired,
   hadleDeleteClick: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onDeleteSuccess: PropTypes.func.isRequired,
 };
 
 export default TaskItem;
