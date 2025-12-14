@@ -37,18 +37,8 @@ function Tasks() {
   //   toast.success('Task added successfully');
   // };
 
-  const handleAddTaskSubmit = async (task) => {
-    const response = await fetch('http://localhost:3001/tasks', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(task),
-    });
-    if (!response.ok) {
-      toast.error('Failed to add task');
-      return;
-    }
+  const onTaskSubmitSuccess = async (task) => {
+
     setTasks([...tasks, task]);
     toast.success('Task added successfully');
   };
@@ -114,7 +104,7 @@ function Tasks() {
           <AddTasksDialog
             isOpen={addTaskDialogIsOpen}
             handleClose={() => setAddTaskDialogIsOpen(false)}
-            handleSubmit={handleAddTaskSubmit}
+            onSubmitSuccess={onTaskSubmitSuccess}
           />
         </div>
       </div>
