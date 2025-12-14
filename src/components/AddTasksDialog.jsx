@@ -121,11 +121,13 @@ const AddTasksDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                     placeholder="Enter the task title"
                     error={titleError}
                     ref={titleRef}
+                    disabled={isLoading}
                   />
 
                   <TimeSelect
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
+                    disabled={isLoading}
                   />
                   <Input
                     id="description"
@@ -133,6 +135,7 @@ const AddTasksDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                     placeholder="Describe the task"
                     ref={descriptionRef}
                     error={descriptionError}
+                    disabled={isLoading}
                   />
 
                   <div className="flex gap-3">

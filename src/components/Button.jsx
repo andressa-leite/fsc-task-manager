@@ -15,21 +15,25 @@ export const Button = ({
       //variant below = button color
       variant: {
         primary: 'bg-brand-primary text-white',
-        ghost: 'text-brand-dark-grey bg-transparent',
+        ghost: 'bg-transparent text-brand-dark-grey',
         secondary: 'bg-brand-secondary text-white',
       },
       //size = button size
       size: {
-        small: ' py-1 text-xs',
-        large: ' py-2 text-sm',
+        small: 'py-1 text-xs',
+        large: 'py-2 text-sm',
+      },
+      disabled: {
+        true: 'cursor-not-allowed opacity-50',
+      },
     },
-  }});
+  });
 
- 
   return (
     <button
       onClick={onClick}
-      className={button({ variant, size, className })} {...rest}
+      className={button({ variant, size, className, disabled: rest.disabled })}
+      {...rest}
     >
       {children}
     </button>
