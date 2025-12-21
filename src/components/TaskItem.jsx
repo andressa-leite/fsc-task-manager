@@ -4,6 +4,7 @@ import { CiRedo } from 'react-icons/ci';
 import { LuSquareArrowOutUpRight } from 'react-icons/lu';
 import { MdOutlineDone } from 'react-icons/md';
 import { TbTrashXFilled } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 
 const TaskItem = ({ task, handleTaskCheckboxClick, onDeleteSuccess }) => {
@@ -73,9 +74,9 @@ const TaskItem = ({ task, handleTaskCheckboxClick, onDeleteSuccess }) => {
             <TbTrashXFilled />
           )}
         </button>
-        <a href="#" className="transition hover:opacity-75">
-          <LuSquareArrowOutUpRight />
-        </a>
+        <Link to={`/task/${task.id}`} className="transition hover:opacity-75">
+           <LuSquareArrowOutUpRight />
+        </Link>
       </div>
     </div>
   );
