@@ -1,19 +1,46 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { FaArrowCircleLeft } from 'react-icons/fa';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { useNavigate, useParams } from 'react-router-dom';
+''
+import { Sidebar } from '../components/Sidebar';
 
 export const TaskDetailsPage = () => {
   const { taskId } = useParams();
   const [task, setTask] = useState(null);
+  const navigate = useNavigate();
+  const handleBackClick = () => {
+    navigate(-1);
+  };
   useEffect(() => {
     const fetchTask = async () => {
       const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
         method: 'GET',
       });
       const data = await response.json();
-      console.log({data});
+      console.log({ data });
       setTask(data);
     };
     fetchTask();
   }, [taskId]);
-  return <h1>TaskDetailsPage</h1>;
+  return (
+    <div className="flex items-start">
+      <Sidebar />
+      {/* Barra do topo */}
+      <div className="flex w-full justify-between px-8 py-16">
+        <div>
+          {/* Parte da esquerda */}
+          <button onClick={handleBackClick}>
+            <FaArrowCircleLeft size={32} className='text-brand-primary' />
+          </button>
+          <div className="flex items-center gap-1 pt-2">
+            <span className="text-brand-text-grey">My Tasks</span>
+            <MdOutlineKeyboardArrowRight className="text-brand-text-grey" />
+            <span className="text-brand-primary">{task?.title}</span>
+          </div>
+          <h1 className="mt-1 text-xl font-semibold">{task?.title}</h1>
+        </div>
+      </div>
+    </div>
+  );
 };
