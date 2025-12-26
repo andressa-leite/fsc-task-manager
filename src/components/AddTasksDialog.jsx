@@ -111,7 +111,7 @@ const AddTasksDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                 <h2 className="text-brand-dark-blue text-xl font-semibold">
                   New Task
                 </h2>
-                <p className="mb-4 mt-1 text-sm text-brand-text-grey">
+                <p className="mb-4 mt-1 text-sm-text-grey">
                   Enter the information below
                 </p>
                 <div className="flex w-[336px] flex-col space-y-4">

@@ -5,7 +5,10 @@ import { VscTrash } from 'react-icons/vsc';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '../components/Button';
+import Input from '../components/Input';
+import InputLabel from '../components/InputLabel';
 import { Sidebar } from '../components/Sidebar';
+import TimeSelect from '../components/TimeSelect';
 
 export const TaskDetailsPage = () => {
   const { taskId } = useParams();
@@ -28,8 +31,9 @@ export const TaskDetailsPage = () => {
   return (
     <div className="flex items-start">
       <Sidebar />
-      {/* Barra do topo */}
-      <div className="flex w-full justify-between px-8 py-16">
+
+      <div className="flex w-full flex-col space-y-6 px-8 py-16">
+        {/* Barra do topo */}
         <div className="flex w-full items-start justify-between">
           {/* Lado esquerdo */}
           <div>
@@ -47,10 +51,23 @@ export const TaskDetailsPage = () => {
           </div>
 
           {/* Lado direito */}
-          <Button  variant='danger' className="h-fit">
+          <Button variant="danger" className="h-fit">
             <VscTrash />
             Delete task
           </Button>
+        </div>
+
+        {/* Dados da tarefa */}
+        <div className="rounded-xl bg-brand-white p-6 space-y-6">
+          <div>
+            <Input id="title" label="Title" value={task?.title} />
+          </div>
+          <div>
+            <TimeSelect value={task?.time} />
+          </div>
+          <div>
+            <Input id="description" label="Description" value={task?.description} />
+          </div>
         </div>
       </div>
     </div>
