@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { VscTrash } from 'react-icons/vsc';
 import { useNavigate, useParams } from 'react-router-dom';
-''
+
+import { Button } from '../components/Button';
 import { Sidebar } from '../components/Sidebar';
 
 export const TaskDetailsPage = () => {
@@ -28,17 +30,27 @@ export const TaskDetailsPage = () => {
       <Sidebar />
       {/* Barra do topo */}
       <div className="flex w-full justify-between px-8 py-16">
-        <div>
-          {/* Parte da esquerda */}
-          <button onClick={handleBackClick}>
-            <FaArrowCircleLeft size={32} className='text-brand-primary' />
-          </button>
-          <div className="flex items-center gap-1 pt-2">
-            <span className="text-brand-text-grey">My Tasks</span>
-            <MdOutlineKeyboardArrowRight className="text-brand-text-grey" />
-            <span className="text-brand-primary">{task?.title}</span>
+        <div className="flex w-full items-start justify-between">
+          {/* Lado esquerdo */}
+          <div>
+            <button onClick={handleBackClick}>
+              <FaArrowCircleLeft size={32} className="text-brand-primary" />
+            </button>
+
+            <div className="flex items-center gap-1 pt-2">
+              <span className="text-brand-text-grey">My Tasks</span>
+              <MdOutlineKeyboardArrowRight className="text-brand-text-grey" />
+              <span className="text-brand-primary">{task?.title}</span>
+            </div>
+
+            <h1 className="mt-1 text-xl font-semibold">{task?.title}</h1>
           </div>
-          <h1 className="mt-1 text-xl font-semibold">{task?.title}</h1>
+
+          {/* Lado direito */}
+          <Button  variant='danger' className="h-fit">
+            <VscTrash />
+            Delete task
+          </Button>
         </div>
       </div>
     </div>

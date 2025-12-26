@@ -17,6 +17,7 @@ export const Button = ({
         primary: 'bg-brand-primary text-white',
         ghost: 'bg-transparent text-brand-dark-grey',
         secondary: 'bg-brand-secondary text-white',
+        danger: 'bg-brand-danger text-white'
       },
       //size = button size
       size: {
@@ -42,7 +43,7 @@ export const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['primary', 'ghost', 'secondary']),
+  variant: PropTypes.oneOf(['primary', 'ghost', 'secondary', 'danger']),
   onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['small', 'large']),
   className: PropTypes.string.isRequired,
